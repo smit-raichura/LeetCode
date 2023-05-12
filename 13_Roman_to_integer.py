@@ -1,10 +1,13 @@
-def lcp(strs):
-    prefix = ''
-    for i in range(len(strs[0])):
-        for s in strs:
-            print('string : {0}     index : {1}     cahrAt : {2}'.format(s, i, s[i]))
-            if i == len(s) or s[i] != strs[0][i]:
-                return prefix
-        prefix += strs[0][i]
-    return prefix 
-    
+def romanToInt(s: str) -> int:
+    int_map = {'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
+    res = 0
+    for i in range(0,len(s)):
+        if i == len(s)-1:
+            res += int_map[s[i]]
+        else: 
+            if int_map[s[i]] < int_map[s[i+1]]:
+                res -= int_map[s[i]]
+                i+=2
+            else:
+                res += int_map[s[i]]
+    return res
